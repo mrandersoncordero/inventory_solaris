@@ -27,3 +27,11 @@ class InventorySolaris(models.Model):
 
         get_latest_by = 'created'
         ordering = ['-created', '-updated']
+
+
+class InformationBase(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(null=True, blank=True)
+
+    class Meta:
+        abstract = True
