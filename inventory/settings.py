@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-m2-y3+9n!s+znct7$u--vil9q)u6(h%%#v386k1r&%hw%(1muw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", ".now.sh"]
+ALLOWED_HOSTS = []
 
 # Auth user model
 AUTH_USER_MODEL = 'users.User'
@@ -82,7 +82,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'inventory.wsgi.app'
+WSGI_APPLICATION = 'inventory.wsgi.application'
 
 
 # Database
@@ -92,11 +92,14 @@ WSGI_APPLICATION = 'inventory.wsgi.app'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.environ.get("DB_NAME"),
-        "USER": os.environ.get("DB_USER"),
-        "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": os.environ.get("DB_HOST"),
-        "PORT": os.environ.get("DB_PORT"),
+        "NAME": os.environ.get("PGDATABASE"),
+        "USER": os.environ.get("PGUSER"),
+        "PASSWORD": os.environ.get("PGPASSWORD"),
+        "HOST": os.environ.get("PGHOST"),
+        "PORT": os.environ.get("PGPORT"),
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
 
