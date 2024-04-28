@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
 import os
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +29,7 @@ SECRET_KEY = 'django-insecure-m2-y3+9n!s+znct7$u--vil9q)u6(h%%#v386k1r&%hw%(1muw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", ".now.sh"]
 
 # Auth user model
 AUTH_USER_MODEL = 'users.User'
@@ -85,10 +88,15 @@ WSGI_APPLICATION = 'inventory.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": os.environ.get("DB_NAME"),
+        "USER": os.environ.get("DB_USER"),
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        "HOST": os.environ.get("DB_HOST"),
+        "PORT": os.environ.get("DB_PORT"),
     }
 }
 
@@ -129,19 +137,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Define la ruta de los directorios estáticos dentro de tu aplicación
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static'),  # Directorio de archivos estáticos de tu aplicación
 ]
 
-STATICFILES_FINDERS = [
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-]
+# Define la ruta donde se recopilarán los archivos estáticos al ejecutar "collectstatic"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Ruta donde se recopilarán los archivos estáticos para producción
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media/'  # URL para acceder a los archivos de media
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Ruta donde se almacenarán los archivos de media subidos por los usuarios
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
