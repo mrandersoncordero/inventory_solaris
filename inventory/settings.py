@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'inventory.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-ATABASES = {
+DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
         default=os.environ.get('DATABASE_URL'),
