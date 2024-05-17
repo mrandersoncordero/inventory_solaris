@@ -6,9 +6,9 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 
 # Utilities
-from inventory.utils import InventorySolaris
+from administative_system.utils import BaseModel
 
-class User(InventorySolaris, AbstractUser):
+class User(BaseModel, AbstractUser):
     """User model.
 
     Extend form Django's Abstract User, change the username field

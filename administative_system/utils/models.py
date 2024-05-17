@@ -3,8 +3,8 @@
 # Django
 from django.db import models
 
-class InventorySolaris(models.Model):
-    """InventorySolaris base model.
+class BaseModel(models.Model):
+    """BaseModel base model.
       + created (DateTime): Store the datetime the objects was created.
       + modified (DateTime): Store the datetime the objects was modified
     """

@@ -1,5 +1,5 @@
 """
-URL configuration for inventory project.
+URL configuration for administative_system project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/

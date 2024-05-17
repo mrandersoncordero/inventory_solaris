@@ -3,13 +3,11 @@
 # Django
 from django.db import models
 
+class Category(models.Model):
+    """Category model."""
 
-# Utils
-from inventory.utils import InformationBase
-
-
-class Category(InformationBase):
-    pass
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.name
